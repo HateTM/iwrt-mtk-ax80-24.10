@@ -39,6 +39,9 @@ mediatek_setup_interfaces()
 	jdcloud,re-cp-03)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan
 		;;
+	tplink,archer-ax80-v1)
+		ucidef_set_interfaces_lan_wan "lan0 lan1 lan2 lan3" eth1
+		;;
  	tplink,tl-xdr6086)
  		ucidef_set_interfaces_lan_wan "lan1 lan2" wan
  		;;
@@ -95,6 +98,20 @@ mediatek_setup_macs()
 		lan_mac=$(mmc_get_mac_binary factory 0x24)
 		label_mac=$lan_mac
 		;;
+	# tplink,archer-ax80-v1)
+	#	lan_mac=$(mtd_get_mac_binary tp_data 0x228830)
+	#	wan_mac=$(macaddr_add "$lan_mac" 1)
+	#	local b0dat="$(l1dat if2dat ra0)"
+	#	local b1dat="$(l1dat if2dat rax0)"
+	#	if [ -f ${b0dat} ] && ! grep -q "MacAddress=" ${b0dat}; then
+	#		local b0mac="$lan_mac"
+	#		echo "MacAddress=$b0mac" >> ${b0dat}
+	#	fi
+	#	if [ -f ${b1dat} ] && ! grep -q "MacAddress=" ${b1dat}; then
+	#		local b1mac="$(macaddr_add $lan_mac -1)"
+	#		echo "MacAddress=$b1mac" >> ${b1dat}
+	#	fi
+	#	;; //
  	tplink,tl-xdr6086|\
  	tplink,tl-xdr6088)
 		lan_mac=$(mtd_get_mac_binary config 0x1c)

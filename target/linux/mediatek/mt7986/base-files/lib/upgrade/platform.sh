@@ -155,6 +155,10 @@ platform_do_upgrade() {
 	*snand*)
 		nand_do_upgrade "$1"
 		;;
+	tplink,archer-ax80-v1)
+		CI_UBIPART=ubi0
+		nand_do_upgrade "$1"
+		;;
 	bananapi,bpi-r3mini-emmc |\
 	glinet,gl-mt6000 |\
 	jdcloud,re-cp-03 |\

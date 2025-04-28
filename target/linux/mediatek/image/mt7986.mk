@@ -542,6 +542,21 @@ define Device/glinet_gl-mt6000
 endef
 TARGET_DEVICES += glinet_gl-mt6000
 
+define Device/tplink_archer-ax80-v1
+    DEVICE_VENDOR := TP-Link
+    DEVICE_MODEL := Archer AX80V1
+    DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
+    DEVICE_PACKAGES := $(MT7986_USB_PKGS) kmod-leds-lp5523
+    DEVICE_DTS := mt7986a-tplink-archer-ax80-v1
+    UBINIZE_OPTS := -E 5
+    BLOCKSIZE := 128k
+    PAGESIZE := 2048
+    KERNEL_IN_UBI := 1
+    IMAGE_SIZE := 51200k
+    IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += tplink_archer-ax80-v1
+
 define Device/tplink_tl-common
     DEVICE_VENDOR := TP-Link
     DEVICE_DTS_DIR := $(DTS_DIR)/mediatek

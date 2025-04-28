@@ -144,3 +144,36 @@ define KernelPackage/leds-uleds/description
 endef
 
 $(eval $(call KernelPackage,leds-uleds))
+
+define KernelPackage/leds-lp55xx-common
+  SUBMENU:=$(LEDS_MENU)
+  TITLE:=LED common driver for LP5521/LP5523/LP55231/LP5562 controllers
+  DEPENDS:=+kmod-i2c-core
+  KCONFIG:=CONFIG_LEDS_LP55XX_COMMON
+  FILES:=$(LINUX_DIR)/drivers/leds/leds-lp55xx-common.ko
+  AUTOLOAD:=$(call AutoLoad,60,leds-lp55xx-common,1)
+endef
+
+define KernelPackage/leds-lp55xx-common/description
+ This option enables support for Texas Instruments
+ LP5521/LP5523/LP55231/LP5562 common driver.
+endef
+
+$(eval $(call KernelPackage,leds-lp55xx-common))
+
+
+define KernelPackage/leds-lp5523
+  SUBMENU:=$(LEDS_MENU)
+  TITLE:=LED driver for LP5523/LP55231 controllers
+  DEPENDS:=+kmod-i2c-core +kmod-leds-lp55xx-common
+  KCONFIG:=CONFIG_LEDS_LP5523
+  FILES:=$(LINUX_DIR)/drivers/leds/leds-lp5523.ko
+  AUTOLOAD:=$(call AutoLoad,60,leds-lp5523,1)
+endef
+
+define KernelPackage/leds-lp5523/description
+ This option enables support for Texas Instruments LP5523/LP55231
+ LED controllers.
+endef
+
+$(eval $(call KernelPackage,leds-lp5523))
