@@ -294,7 +294,7 @@
                 label = "userconfig";
                 reg = <0x6700000 0x800000>;
             };
-            factory:partition@6f00000 {
+            Factory:partition@6f00000 {
                 label = "tp_data";
                 reg = <0x6f00000 0x400000>;
             };
@@ -364,4 +364,5 @@
 
 &wbsys {
 	status = "okay";
+	mediatek,mtd-eeprom = <&Factory 0x0000>;
 };
